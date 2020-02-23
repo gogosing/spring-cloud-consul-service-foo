@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: foo-service
+  cloud:
+    consul:
+      host: ${CONSUL_HOST:localhost}
+      port: ${CONSUL_PORT:8500}
+      discovery:
+        instanceId: ${spring.application.name}:${POD_NAME:localhost}:${server.port:18080}
+        prefer-ip-address: true
+        health-check-critical-timeout: 3m
+      config:
+        enabled: true
+        format: yaml
